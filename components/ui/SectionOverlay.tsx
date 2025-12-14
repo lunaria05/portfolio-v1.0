@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,6 +8,8 @@ import hiral1 from "@/app/assets/hiral1.jpeg";
 import hiral2 from "@/app/assets/hiral2.jpg";
 import hiral3 from "@/app/assets/hiral3.jpg";
 import Image from "next/image";
+import InteractiveSkills from "@/components/sections/InteractiveSkills";
+import InteractiveContact from "../sections/InteractiveContact";
 
 export default function SectionOverlay() {
   const currentSection = useScrollStore((state) => state.currentSection);
@@ -15,18 +17,50 @@ export default function SectionOverlay() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-10">
-      <div className="container mx-auto h-full flex items-center justify-center px-8">
-        <AnimatePresence mode="wait">
-          {currentSection === 0 ? (
-            <IntroContent key={currentSection} />
-          ) : (
+      <AnimatePresence mode="wait">
+        {/* --- SECTION 0: INTRO --- */}
+        {currentSection === 0 && <IntroContent key="intro" />}
+
+        {/* --- SECTION 2: SKILLS (Full Screen Special Case) --- */}
+        {currentSection === 2 && (
+          <motion.div
+            key="skills"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="w-full h-full relative"
+          >
+            {/* The Skills Network Background */}
+            <div className="absolute inset-0 z-0 pointer-events-auto">
+               <InteractiveSkills />
+            </div>
+          </motion.div>
+        )}
+        {currentSection === 3 && (
+          <motion.div
+            key="skills"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="w-full h-full relative"
+          >
+            {/* The Skills Network Background */}
+            <div className="absolute inset-0 z-0 pointer-events-auto">
+               <InteractiveContact />
+            </div>
+          </motion.div>
+        )}
+
+        {/* --- SECTIONS 1 & 3: STANDARD LAYOUT --- */}
+        {(currentSection === 1)  && (
+          <div key="standard" className="mx-auto h-full flex items-center justify-center px-8">
             <motion.div
               key={currentSection}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="text-center max-w-2xl"
+              className="text-center"
             >
               <motion.h1
                 className="text-6xl md:text-8xl font-bold text-white mb-4"
@@ -46,16 +80,15 @@ export default function SectionOverlay() {
               </motion.p>
 
               {currentSection === 1 && <ProjectsContent />}
-              {currentSection === 2 && <SkillsContent />}
-              {currentSection === 3 && <ContactContent />}
             </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
+// ... Keep IntroContent, ProjectsContent, ContactContent exactly as they were ...
 function IntroContent() {
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
@@ -321,40 +354,6 @@ function ProjectsContent() {
             {project.name}
           </h3>
           <p className="text-gray-300">{project.desc}</p>
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-}
-
-function SkillsContent() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6 }}
-      className="mt-8 flex flex-wrap gap-3 justify-center pointer-events-auto"
-    >
-      {[
-        "React",
-        "Three.js",
-        "TypeScript",
-        "Next.js",
-        "Node.js",
-        "Python",
-        "WebGL",
-        "TensorFlow",
-        "Docker",
-        "AWS",
-      ].map((skill, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.7 + i * 0.05 }}
-          className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-6 py-3 border border-white/30 hover:border-white/60 transition-colors cursor-pointer"
-        >
-          <span className="text-white font-medium">{skill}</span>
         </motion.div>
       ))}
     </motion.div>
