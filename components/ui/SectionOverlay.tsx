@@ -10,6 +10,7 @@ import hiral3 from "@/app/assets/hiral3.jpg";
 import Image from "next/image";
 import InteractiveSkills from "@/components/sections/InteractiveSkills";
 import InteractiveContact from "../sections/InteractiveContact";
+import Projects from "../sections/Projects";
 
 export default function SectionOverlay() {
   const currentSection = useScrollStore((state) => state.currentSection);
@@ -20,6 +21,7 @@ export default function SectionOverlay() {
       <AnimatePresence mode="wait">
         {/* --- SECTION 0: INTRO --- */}
         {currentSection === 0 && <IntroContent key="intro" />}
+        {currentSection === 1 && <Projects />}
 
         {/* --- SECTION 2: SKILLS (Full Screen Special Case) --- */}
         {currentSection === 2 && (
@@ -52,7 +54,7 @@ export default function SectionOverlay() {
         )}
 
         {/* --- SECTIONS 1 & 3: STANDARD LAYOUT --- */}
-        {(currentSection === 1)  && (
+        {/* {(currentSection === 1)  && (
           <div key="standard" className="mx-auto h-full flex items-center justify-center px-8">
             <motion.div
               key={currentSection}
@@ -82,7 +84,7 @@ export default function SectionOverlay() {
               {currentSection === 1 && <ProjectsContent />}
             </motion.div>
           </div>
-        )}
+        )} */}
       </AnimatePresence>
     </div>
   );
