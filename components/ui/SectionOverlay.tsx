@@ -52,39 +52,6 @@ export default function SectionOverlay() {
             </div>
           </motion.div>
         )}
-
-        {/* --- SECTIONS 1 & 3: STANDARD LAYOUT --- */}
-        {/* {(currentSection === 1)  && (
-          <div key="standard" className="mx-auto h-full flex items-center justify-center px-8">
-            <motion.div
-              key={currentSection}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="text-center"
-            >
-              <motion.h1
-                className="text-6xl md:text-8xl font-bold text-white mb-4"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                {section.title}
-              </motion.h1>
-              <motion.p
-                className="text-xl md:text-2xl text-gray-300"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                {section.description}
-              </motion.p>
-
-              {currentSection === 1 && <ProjectsContent />}
-            </motion.div>
-          </div>
-        )} */}
       </AnimatePresence>
     </div>
   );
@@ -331,62 +298,3 @@ function IntroContent() {
   );
 }
 
-function ProjectsContent() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6 }}
-      className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 pointer-events-auto"
-    >
-      {[
-        { name: "Project 1", desc: "Web App with React & Node" },
-        { name: "Project 2", desc: "3D Visualization Tool" },
-        { name: "Project 3", desc: "AI-Powered Dashboard" },
-        { name: "Project 4", desc: "Mobile App with React Native" },
-      ].map((project, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.7 + i * 0.1 }}
-          className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 transition-colors cursor-pointer"
-        >
-          <h3 className="text-xl font-semibold text-white mb-2">
-            {project.name}
-          </h3>
-          <p className="text-gray-300">{project.desc}</p>
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-}
-
-function ContactContent() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6 }}
-      className="mt-8 flex gap-6 justify-center pointer-events-auto"
-    >
-      {[
-        { name: "Email", link: "mailto:your@email.com" },
-        { name: "GitHub", link: "https://github.com" },
-        { name: "LinkedIn", link: "https://linkedin.com" },
-        { name: "Twitter", link: "https://twitter.com" },
-      ].map((contact, i) => (
-        <motion.a
-          key={i}
-          href={contact.link}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.7 + i * 0.1 }}
-          className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 hover:bg-white/20 transition-colors text-white font-medium"
-        >
-          {contact.name}
-        </motion.a>
-      ))}
-    </motion.div>
-  );
-}
