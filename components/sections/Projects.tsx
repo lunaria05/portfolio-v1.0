@@ -269,7 +269,7 @@ const Projects = () => {
                     src={project.image}
                     alt={project.name}
                     fill
-                    className="object-cover opacity-60 hover:opacity-100 transition-opacity duration-500 grayscale hover:grayscale-0"
+                    className="object-cover opacity-60 hover:opacity-100 transition-opacity duration-500 "
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
                   <motion.div

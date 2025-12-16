@@ -42,7 +42,7 @@ export default function ContactSection() {
     setInputValue('');
     setIsBotTyping(true);
 
-    setTimeout(() => {
+    setTimeout(async () => {
       setIsBotTyping(false);
 
       if (currentStep === 'name') {
@@ -67,14 +67,46 @@ export default function ContactSection() {
         formData.current.message = userText;
         setCurrentStep('sending');
 
-        setTimeout(() => {
-          setCurrentStep('completed');
+        // Send data to API
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: formData.current.name,
+              email: formData.current.email,
+              message: formData.current.message,
+            }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            setCurrentStep('completed');
+            setMessages(prev => [...prev, {
+              id: Date.now().toString(),
+              text: "Message received! Hiral will get back to you soon 🎉",
+              sender: 'bot'
+            }]);
+          } else {
+            setCurrentStep('message');
+            setMessages(prev => [...prev, {
+              id: Date.now().toString(),
+              text: `Oops! Something went wrong: ${data.error || 'Please try again.'}`,
+              sender: 'bot'
+            }]);
+          }
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          setCurrentStep('message');
           setMessages(prev => [...prev, {
             id: Date.now().toString(),
-            text: "Message received! Hiral will get back to you soon 🎉",
+            text: "Sorry, there was an error sending your message. Please try again or email me directly.",
             sender: 'bot'
           }]);
-        }, 1500);
+        }
       }
     }, 1000);
   };
