@@ -69,6 +69,7 @@ const InteractiveSkills = () => {
   const mousePos = useRef({ x: -1000, y: -1000 });
   const hoveredIndex = useRef<number>(-1);
   const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [tooltipIndex, setTooltipIndex] = React.useState<number>(-1);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -272,12 +273,14 @@ const InteractiveSkills = () => {
               nodeRefs.current[index] = el;
               if (nodesRef.current[index]) nodesRef.current[index].element = el;
             }}
-            className="absolute top-0 left-0 will-change-transform z-20"
+            className="absolute top-0 left-0 will-change-transform z-9999"
             onMouseEnter={() => {
               hoveredIndex.current = index;
+              setTooltipIndex(index);
             }}
             onMouseLeave={() => {
               hoveredIndex.current = -1;
+              setTooltipIndex(-1);
             }}
           >
             <motion.div
@@ -305,13 +308,27 @@ const InteractiveSkills = () => {
                   )
                 )}
 
-                {!isCenter && (
-                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    <span className="text-xs font-mono font-bold text-[#1aa9da] bg-black/90 px-3! py-1! rounded border border-[#1aa9da]/30 whitespace-nowrap">
-                      {skill.name}
-                    </span>
-                  </div>
-                )}
+{!isCenter && tooltipIndex === index && (
+  <motion.div
+    initial={{ opacity: 0, y: 10, scale: 0.8 }}
+    animate={{ opacity: 1, y: 0, scale: 1 }}
+    exit={{ opacity: 0, y: 10, scale: 0.8 }}
+    transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
+    className="absolute -bottom-14 left-1/2 -translate-x-1/2 z-[9999]"
+  >
+    <div className="relative flex flex-col items-center">
+      {/* The Arrow */}
+      <div className="w-3 h-3 bg-[#0f0f0f] border-t border-l border-[#1aa9da]/50 transform rotate-45 translate-y-1.5 z-0"></div>
+      
+      {/* The Box */}
+      <div className="relative z-10 bg-[#0f0f0f]/90 backdrop-blur-md border border-[#1aa9da]/30 px-2 py-1 rounded-lg shadow-[0_0_20px_rgba(26,169,218,0.3)]">
+        <span className="text-[10px] font-bold tracking-widest text-[#1aa9da] whitespace-nowrap uppercase">
+          {skill.name}
+        </span>
+      </div>
+    </div>
+  </motion.div>
+)}
               </div>
             </motion.div>
           </div>

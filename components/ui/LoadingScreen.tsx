@@ -65,7 +65,7 @@ export default function LoadingScreen() {
             
             {/* The Huge Counter */}
             <div className="relative">
-              <span className="text-[12vw] md:text-[150px] font-black font-mono tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600">
+              <span className="text-[12vw] md:text-[150px] font-black font-mono tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 px-4">
                 {Math.round(progress)}
               </span>
               <span className="text-2xl md:text-4xl font-bold text-[#1aa9da] absolute top-4 md:top-8 -right-6 md:-right-10">

@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projectsData, Project } from '@/utils/projectsData';
 import Image from 'next/image';
-import { FaGithub, FaExternalLinkAlt, FaCodeBranch, FaPlay } from 'react-icons/fa';
+import { FaCodeBranch, FaPlay, FaLayerGroup } from 'react-icons/fa';
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
@@ -33,7 +33,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="fixed inset-0 w-full h-full z-10 pointer-events-none flex flex-col justify-end overflow-hidden bg-linear-to-b from-black/20 via-transparent to-black/80">
+    <div className="fixed inset-0 w-full h-[80vh] z-10 pointer-events-none flex flex-col justify-end overflow-hidden mt-auto">
 
       {/* Background Ambience */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1aa9da] opacity-[0.05] blur-[150px] rounded-full pointer-events-none" />
@@ -52,6 +52,16 @@ const Projects = () => {
           <span className="w-1.5 h-1.5 bg-[#1aa9da] rounded-full animate-pulse" />
           Selected Projects
         </div>
+        <div className="flex items-center gap-4 mt-3">
+                <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]" />
+                    <span className="text-[10px] font-mono text-gray-400 tracking-widest">SYSTEM ONLINE</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10">
+                    <FaLayerGroup className="text-[#1aa9da] text-[10px]" />
+                    <span className="text-[10px] font-mono text-gray-400 tracking-widest">NODES: 0{projectsData.length}</span>
+                </div>
+            </div>
       </motion.div>
 
 
@@ -222,7 +232,7 @@ const Projects = () => {
 
 
       {/* --- 3. CAROUSEL (Bottom) --- */}
-      <div className="relative w-full pb-8 pt-4 pointer-events-auto z-40">
+      <div className="relative w-full pb-8 pt-4 pointer-events-auto z-40 mt-auto">
         
         {/* linear Fades */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-linear-to-r from-black via-black/80 to-transparent z-20 pointer-events-none" />

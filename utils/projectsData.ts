@@ -21,56 +21,65 @@ export interface Project {
 export const projectsData: Project[] = [
   {
     id: 1,
-    name: "AI-Powered Task Manager",
-    description: "A smart task management application that uses AI to prioritize your tasks, suggest optimal scheduling, and provide productivity insights. Built with modern tech stack for seamless user experience.",
-    techStack: ["Next.js", "TypeScript", "OpenAI API", "Tailwind CSS", "Prisma", "PostgreSQL"],
-    image: p1, // Replace with your actual image path
-    codeLink: "https://github.com/yourusername/ai-task-manager",
-    viewLink: "https://ai-task-manager.vercel.app"
+    name: "Lampros tech",
+    description: "Lampros Tech site is a fast, animated web app using Next.js and React. It manages content with Sanity, styles with Tailwind, and adds secure forms, emails, and cookies for a smooth, modern feel.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity", "GSAP", "Lenis", "JSON Web Tokens", "reCAPTCHA", "Nodemailer" ],
+    image: p1, 
+    codeLink: "https://github.com/Lampros-Tech/lampros-tech-site",
+    viewLink: "http://lampros.tech/"
   },
   {
     id: 2,
-    name: "NFT Marketplace",
-    description: "Decentralized marketplace for buying, selling, and trading NFTs. Features include wallet integration, real-time bidding, and IPFS storage for metadata. Fully responsive design with Web3 functionality.",
-    techStack: ["React", "Solidity", "Ethers.js", "IPFS", "Hardhat", "The Graph"],
+    name: "Pharos",
+    description: "Pharos is a Web3 raffle platform where users pool PYUSD to enter fair, on-chain draws for rare assets and experiences. Winners are picked transparently via Pyth Network's random number generator, with everything auditable on the blockchain for shared, democratized wins.",
+    techStack: ["Next.js", "Framer Motion", "React Icons", "Hardhat", "Pythnetwork"],
     image: p2,
-    codeLink: "https://github.com/yourusername/nft-marketplace",
-    viewLink: "https://nft-marketplace-demo.netlify.app"
+    codeLink: "https://github.com/lunaria05/pharos",
+    viewLink: "http://pharos-mvp.vercel.app/"
   },
   {
     id: 3,
-    name: "Real-time Collaboration Tool",
-    description: "A Figma-like collaborative whiteboard where teams can brainstorm, sketch, and plan together in real-time. Includes features like cursor tracking, live updates, and version control.",
-    techStack: ["React", "Socket.io", "Node.js", "MongoDB", "Canvas API", "Redis"],
+    name: "The Toolbox",
+    description: "The Toolbox is a top supplier of high-quality industrial tools, equipment, and maintenance services in the Democratic Republic of Congo, featuring brands like SKF and Bosch, with fast delivery and 24/7 support across showrooms in Kolwezi, Lubumbashi, and Likasi.",
+    techStack: ["Next.js", "TypeScript", "Three.js", "Framer Motion", "Swiper"],
     image: p3,
-    codeLink: "https://github.com/yourusername/collab-tool",
-    viewLink: "https://collab-tool.vercel.app"
+    codeLink: "https://github.com/hackWiz29/toolbox",
+    viewLink: "https://toolbox-mvp.vercel.app/"
   },
   {
     id: 4,
-    name: "E-Commerce Dashboard",
-    description: "Comprehensive admin dashboard for managing e-commerce operations. Analytics, inventory management, order tracking, and customer insights all in one place with beautiful data visualizations.",
-    techStack: ["Next.js", "Chart.js", "Stripe", "Tailwind CSS", "Firebase", "TypeScript"],
+    name: "Arbirush",
+    description: "Arbirush is a DeFi adventure game on Farcaster where players connect wallets to navigate blockchain gates, manage wealth, and compete on leaderboards in an interactive crypto experience.",
+    techStack: ["Next.js", "Framer Motion", "farcaster", "Wagmi", "Howler.js", "TypeScript", "TanStack Query"],
     image: p4,
-    codeLink: "https://github.com/yourusername/ecommerce-dashboard",
-    viewLink: "https://ecommerce-dashboard-demo.vercel.app"
+    codeLink: "https://github.com/prajapati-yash/arbiRush",
+    viewLink: "https://farcaster.xyz/miniapps/Nmi9WzLEzCvT/arbirush"
   },
   {
     id: 5,
-    name: "Video Streaming Platform",
-    description: "Netflix-inspired streaming platform with user authentication, video playback, recommendations, and watchlists. Optimized for performance with adaptive bitrate streaming.",
-    techStack: ["React", "Node.js", "Express", "MongoDB", "AWS S3", "HLS"],
+    name: "Agentic Content Generator",
+    description: "The Agentic Content Generator is an intelligent multi-agent system designed to automate content creation, capable of transforming raw inputs like emails and documents into high-quality blog posts and social media updates.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "MongoDB", "NextAuth.js"],
     image: p5,
-    codeLink: "https://github.com/yourusername/streaming-platform",
-    viewLink: "https://streaming-platform-demo.netlify.app"
+    codeLink: "https://github.com/prajapati-yash/agentic-content-creator",
+    viewLink: "https://agentic-content-generator.vercel.app/"
   },
   {
     id: 6,
-    name: "Fitness Tracking App",
-    description: "Mobile-first fitness application that tracks workouts, nutrition, and progress. Features include workout plans, calorie tracking, and social challenges with friends.",
-    techStack: ["React Native", "Firebase", "Redux", "TypeScript", "Chart.js"],
+    name: "Hermirror",
+    description: "Her Mirror Life appears to be a women's lifestyle and empowerment platform focused on self-reflection, personal growth, and navigating daily life with authenticity.",
+    techStack: ["Next.js", "TypeScript ", "Tailwind CSS"],
     image: p6,
-    codeLink: "https://github.com/yourusername/fitness-app",
-    viewLink: "https://fitness-app-demo.app"
-  }
+    codeLink: "https://github.com/her-mirror/her-mirror",
+    viewLink: "https://www.hermirror.life/"
+  },
+  {
+    id: 7,
+    name: "DCA Agent",
+    description: "DCA Agent is a Farcaster miniapp that automates Dollar Cost Averaging (DCA) strategies, enabling users to set up recurring crypto investment plans on the Arbitrum network with customizable schedules and token options.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Wagmi", "Farcaster"],
+    image: p7,
+    codeLink: "https://github.com/DCA-MiniApp/dca-agent-frontend",
+    viewLink: "https://farcaster.xyz/miniapps/vZnlrKa-yxuL/dca-agent"
+  },
 ];
