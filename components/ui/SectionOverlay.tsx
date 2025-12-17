@@ -11,6 +11,7 @@ import Image from "next/image";
 import InteractiveSkills from "@/components/sections/InteractiveSkills";
 import InteractiveContact from "../sections/InteractiveContact";
 import Projects from "../sections/Projects";
+import Journey from "../sections/Journey";
 
 export default function SectionOverlay() {
   const currentSection = useScrollStore((state) => state.currentSection);
@@ -21,7 +22,7 @@ export default function SectionOverlay() {
       <AnimatePresence mode="wait">
         {/* --- SECTION 0: INTRO --- */}
         {currentSection === 0 && <IntroContent key="intro" />}
-        {currentSection === 1 && <Projects />}
+        {currentSection === 3 && <Projects />}
 
         {/* --- SECTION 2: SKILLS (Full Screen Special Case) --- */}
         {currentSection === 2 && (
@@ -38,7 +39,7 @@ export default function SectionOverlay() {
             </div>
           </motion.div>
         )}
-        {currentSection === 3 && (
+        {currentSection === 4 && (
           <motion.div
             key="skills"
             initial={{ opacity: 0 }}
@@ -52,6 +53,11 @@ export default function SectionOverlay() {
             </div>
           </motion.div>
         )}
+        {currentSection === 1 && ( // Or whatever index you assigned to Journey
+  <div className="w-full h-full relative">
+     <Journey />
+  </div>
+)}
       </AnimatePresence>
     </div>
   );
@@ -171,7 +177,7 @@ function IntroContent() {
 
                 {/* Circular Text on top-right */}
                 <motion.div
-                  className="absolute -top-3 -right-3 w-24 h-24 md:-top-8 md:-right-8 md:w-32 md:h-32 pointer-events-none -z-10"
+                  className="absolute -top-4 -right-4 w-24 h-24 md:-top-8 md:-right-8 md:w-32 md:h-32 pointer-events-none -z-10"
                   animate={{ rotate: 360 }}
                   transition={{
                     duration: 10,
@@ -262,7 +268,7 @@ function IntroContent() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="flex gap-2 mt-8 translate-y-6"
+              className="flex gap-2 mt-4"
             >
               {slides.map((slide, index) => (
                 <button

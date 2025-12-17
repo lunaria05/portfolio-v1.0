@@ -8,7 +8,7 @@ export default function ScrollIndicator() {
   const { currentSection } = useScrollStore();
 
   return (
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-4">
+    <div className="hidden fixed right-8 top-1/2 -translate-y-1/2 z-20 lg:flex flex-col gap-4">
       {SECTIONS.map((section, index) => (
         <motion.div
           key={section.id}

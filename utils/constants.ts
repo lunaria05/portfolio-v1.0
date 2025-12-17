@@ -14,13 +14,13 @@ export const SECTIONS: Section[] = [
   },
   {
     id: 1,
-    name: 'projects',
-    title: 'Projects',
-    description: 'Check out my work',
+    name: 'journey',
+    title: 'Journey',
+    description: "My professional timeline",
     waypoint: {
-      position: [-2, 1.5, 3],
+      position: [-2, 1.5, 3], // Previously used for 'projects'
       lookAt: [0, 1, 0],
-      section: 'projects',
+      section: 'journey',
     },
   },
   {
@@ -29,18 +29,29 @@ export const SECTIONS: Section[] = [
     title: 'Skills',
     description: 'My technical expertise',
     waypoint: {
-      position: [2, 1, 2],
+      position: [2, 1, 2], // Kept same (Right side)
       lookAt: [0, 0.5, 0],
       section: 'skills',
     },
   },
   {
     id: 3,
+    name: 'projects',
+    title: 'Projects',
+    description: 'Check out my work',
+    waypoint: {
+      position: [-2, 1, 2], // NEW: Symmetrical to Skills (Left side close)
+      lookAt: [0, 1, 0],
+      section: 'projects',
+    },
+  },
+  {
+    id: 4,
     name: 'contact',
     title: 'Contact',
     description: "Let's connect",
     waypoint: {
-      position: [0, 1.5, 5],
+      position: [0, 1.5, 5], // Kept same (Center back)
       lookAt: [0, 1, 0],
       section: 'contact',
     },
@@ -48,7 +59,7 @@ export const SECTIONS: Section[] = [
 ];
 
 export const HAND_TRACKING_CONFIG = {
-  PINCH_THRESHOLD: 0.05,  // Same as HTML example - distance for pinch detection
-  SCROLL_SENSITIVITY: 3,   // Pixels per frame (at 60fps = 180px/sec)
-  CURSOR_SMOOTHING: 0.15,  // Same as HTML example - lerp smoothing (0.15 = good balance)
+  PINCH_THRESHOLD: 0.05,
+  SCROLL_SENSITIVITY: 3,
+  CURSOR_SMOOTHING: 0.15,
 };

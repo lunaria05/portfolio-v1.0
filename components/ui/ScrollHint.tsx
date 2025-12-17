@@ -21,7 +21,7 @@ export default function ScrollHint() {
 
   return (
     <div
-      className={`fixed bottom-12 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+      className={`fixed bottom-12 left-1/2 -translate-x-1/2 lg:left-12 lg:translate-x-0 xl:left-1/2 xl:-translate-x-1/2 z-20 pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
         isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-90'
       }`}
     >
