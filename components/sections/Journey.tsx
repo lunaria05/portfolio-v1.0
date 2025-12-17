@@ -15,7 +15,7 @@ const journeyData = [
     description: "Successfully completed high school with Science stream, laying the strong mathematical and analytical foundation for my technical journey.",
     tags: ["Physics", "Maths", "Logic"],
     icon: FaAtom,
-    color: "#a855f7" // Purple
+    color: "#1aa9da" // Purple
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const journeyData = [
     highlight: "CGPA: 8.68",
     tags: ["Algorithms", "OS", "Networks"],
     icon: FaGraduationCap,
-    color: "#3b82f6" // Blue
+    color: "#1aa9da" // Blue
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const journeyData = [
     highlight: "6 Months",
     tags: ["Frontend", "Team Work", "React"],
     icon: FaLaptopCode,
-    color: "#f59e0b" // Amber
+    color: "#1aa9da" // Amber
   },
   {
     id: 4,
@@ -59,7 +59,7 @@ export default function Journey() {
   const activeItem = journeyData.find(item => item.id === activeId);
 
   return (
-    <div className="fixed inset-0 w-full h-[100vh] z-10 pointer-events-none flex flex-col justify-center overflow-hidden">
+    <div className="fixed inset-0 w-full h-screen z-10 pointer-events-none flex flex-col justify-center overflow-hidden">
 
       {/* Background Ambience */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1aa9da] opacity-[0.05] blur-[150px] rounded-full pointer-events-none" />
@@ -96,7 +96,7 @@ export default function Journey() {
                  className={`group cursor-pointer relative w-full text-left p-4 rounded-xl border transition-all duration-300 overflow-hidden
                    ${isActive 
                      ? 'bg-[#1aa9da]/10 border-[#1aa9da] shadow-[0_0_20px_rgba(26,169,218,0.2)]' 
-                     : 'bg-white/5 border-white/10 hover:border-white/30'
+                     : 'bg-white/10 border-white/10 hover:border-white/30'
                    }
                  `}
                >
@@ -143,10 +143,10 @@ export default function Journey() {
                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                  exit={{ opacity: 0, x: -20, filter: 'blur(10px)' }}
                  transition={{ duration: 0.4, ease: "circOut" }}
-                 className="w-full h-full bg-[#0a0a0a]/80 border border-white/10 rounded-2xl p-6 md:p-10 relative overflow-hidden shadow-2xl"
+                 className="w-full h-full bg-[#1aa9da]/10 border border-white/10 rounded-2xl p-6 md:p-10 relative overflow-hidden shadow-2xl"
                >
                  {/* Top Bar Decoration */}
-                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#1aa9da] to-transparent" />
+                 <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-[#1aa9da] to-transparent" />
                  <div className="flex justify-between items-start mb-8">
                     <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded text-[10px] font-mono text-gray-400 border border-white/10">
                        <FaTerminal />
@@ -208,7 +208,7 @@ export default function Journey() {
                  </div>
 
                  {/* Background Graphic Effect */}
-                 <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-gradient-to-tl from-[#1aa9da]/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+                 <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-linear-to-tl from-[#1aa9da]/10 to-transparent rounded-full blur-3xl pointer-events-none" />
 
                </motion.div>
              )}

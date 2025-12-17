@@ -1,12 +1,12 @@
 'use client';
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScrollStore } from "@/store/useScrollStore";
 import { SECTIONS } from "@/utils/constants";
 import hiral1 from "@/app/assets/hiral1.jpeg";
 import hiral2 from "@/app/assets/hiral2.jpeg";
-import hiral3 from "@/app/assets/hiral3.jpeg";
+import hiral3 from "@/app/assets/hiral3.jpg";
 import Image from "next/image";
 import InteractiveSkills from "@/components/sections/InteractiveSkills";
 import InteractiveContact from "../sections/InteractiveContact";
@@ -65,7 +65,7 @@ export default function SectionOverlay() {
 
 // ... Keep IntroContent, ProjectsContent, ContactContent exactly as they were ...
 function IntroContent() {
-  const [currentSlide, setCurrentSlide] = React.useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
@@ -98,6 +98,19 @@ function IntroContent() {
   const handlePrevious = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
+
+  // --- NEW CODE: AUTOMATIC SLIDER LOGIC ---
+  useEffect(() => {
+    // Set the interval to change slides every 4000ms (4 seconds)
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
+
+    // Cleanup the interval when the component unmounts
+    // or when the slide length changes to avoid memory leaks
+    return () => clearInterval(interval);
+  }, [slides.length]); 
+  // ----------------------------------------
 
   const currentSlideData = slides[currentSlide];
 
@@ -134,7 +147,7 @@ function IntroContent() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
                 className="absolute cursor-pointer left-[-80px] top-1/2 -translate-y-1/2 z-20 text-white/60 text-base font-medium transition-colors pointer-events-auto group"
-                style={{ "--hover-color": "#1aa9da" } as any}
+                // style={{ "--hover-color": "#1aa9da" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#1aa9da")}
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)")
@@ -196,7 +209,6 @@ function IntroContent() {
                       />
                     </defs>
 
-                    {/* Optional: The faint guide line circle */}
                     <circle
                       cx="50"
                       cy="50"
