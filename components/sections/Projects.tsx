@@ -33,7 +33,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="fixed inset-0 w-full h-[100vh] z-10 pointer-events-none flex flex-col justify-between overflow-hidden">
+    <div className="fixed inset-0 w-full h-screen z-10 pointer-events-none flex flex-col justify-between overflow-hidden">
 
       {/* Background Ambience */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1aa9da] opacity-[0.05] blur-[150px] rounded-full pointer-events-none" />
@@ -83,7 +83,7 @@ const Projects = () => {
                             h-10 md:h-12 flex items-center px-4 gap-3
                             ${isHovered 
                                 ? 'bg-[#1aa9da] border-[#1aa9da] shadow-[0_0_25px_rgba(26,169,218,0.4)]' 
-                                : 'bg-black/60 border-white/10 hover:border-[#1aa9da]/50 hover:bg-white/10'
+                                : 'bg-[#1aa9da]/20 border-white/10 hover:border-[#1aa9da]/50 hover:bg-white/10'
                             }
                         `}
                     >
@@ -93,7 +93,7 @@ const Projects = () => {
                         </span>
 
                         {/* Divider */}
-                        <div className={`h-3 w-[1px] transition-colors ${isHovered ? 'bg-black/20' : 'bg-white/20'}`} />
+                        <div className={`h-3 w-px transition-colors ${isHovered ? 'bg-black/20' : 'bg-white/20'}`} />
 
                         {/* Name */}
                         <span className={`text-[10px] md:text-xs font-bold uppercase tracking-wide truncate transition-colors ${isHovered ? 'text-black' : 'text-gray-300 group-hover:text-white'}`}>
@@ -102,7 +102,7 @@ const Projects = () => {
                         
                         {/* Scanline Effect (Only when NOT hovered) */}
                         {!isHovered && (
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1s_infinite]" />
+                            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1s_infinite]" />
                         )}
                     </motion.div>
                 );
@@ -116,74 +116,145 @@ const Projects = () => {
         {hoveredProject && (
           <motion.div
             key={hoveredProject.id}
-            initial={{ opacity: 0, scale: 0.85, y: 40, filter: "blur(20px)" }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{
               opacity: 1,
               scale: 1,
               y: 0,
-              filter: "blur(0px)",
-              transition: { duration: 0.4, type: "spring", damping: 20, stiffness: 250 }
+              transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
             }}
             exit={{
               opacity: 0,
-              scale: 0.85,
-              y: 40,
-              filter: "blur(20px)",
-              transition: { duration: 0.25, ease: "easeInOut" }
+              scale: 0.95,
+              transition: { duration: 0.2, ease: "easeOut" }
             }}
             onMouseEnter={handleModalEnter}
             onMouseLeave={handleMouseLeave}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[480px] z-50 pointer-events-auto"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[94%] max-w-[420px] sm:max-w-[480px] md:max-w-[520px] z-50 pointer-events-auto"
           >
+            {/* Modern Card Design */}
             <motion.div
-              initial={{ borderColor: "rgba(255,255,255,0.1)" }}
-              animate={{
-                borderColor: ["rgba(255,255,255,0.1)", "rgba(26,169,218,0.3)", "rgba(255,255,255,0.1)"],
-                boxShadow: ["0 0 80px rgba(0,0,0,0.8)", "0 0 100px rgba(26,169,218,0.3)", "0 0 80px rgba(0,0,0,0.8)"]
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="relative p-6 bg-[#0a0a0a]/90 backdrop-blur-3xl border rounded-[32px] overflow-hidden group"
+              className="relative bg-linear-to-br from-zinc-900/95 via-black/95 to-zinc-950/95 backdrop-blur-2xl border border-white/8 rounded-3xl overflow-hidden shadow-2xl shadow-black/60"
             >
-              <motion.div className="absolute top-0 right-0 w-64 h-64 bg-[#1aa9da] blur-[80px] rounded-full pointer-events-none opacity-20" />
+              {/* Subtle gradient glow effect */}
+              <div className="absolute inset-0 bg-linear-to-br from-[#1aa9da]/10 via-transparent to-purple-500/5 pointer-events-none" />
 
-              <motion.div className="relative w-full h-56 rounded-2xl overflow-hidden border border-white/5 shadow-inner">
-                <Image src={hoveredProject.image} alt={hoveredProject.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-3 left-4 flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]" />
-                  <span className="text-[10px] font-mono text-white/80 uppercase tracking-widest">Live Preview</span>
+              {/* Accent line at top */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#1aa9da]/50 to-transparent" />
+
+              {/* Content Container */}
+              <div className="relative">
+                {/* Image Section */}
+                <div className="relative w-full aspect-video overflow-hidden group/img">
+                  <Image
+                    src={hoveredProject.image}
+                    alt={hoveredProject.name}
+                    fill
+                    className="object-cover transition-all duration-700 group-hover/img:scale-105"
+                  />
+
+                  {/* Gradient overlays */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-br from-[#1aa9da]/20 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500" />
+
+                  {/* Status badge */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md border border-green-500/30 rounded-full"
+                  >
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 shadow-[0_0_8px_#22c55e]"></span>
+                    </span>
+                    <span className="text-[10px] font-medium text-green-100 uppercase tracking-wider">Live</span>
+                  </motion.div>
                 </div>
-              </motion.div>
 
-              <div className="mt-6 flex flex-col gap-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-2 leading-none">{hoveredProject.name}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed font-light">{hoveredProject.description}</p>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] uppercase tracking-widest text-gray-600 font-bold">Built With</span>
-                  <div className="flex flex-wrap gap-2">
-                    {hoveredProject.techStack.map((tech, idx) => (
-                      <div key={idx} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-[11px] text-gray-300 font-mono flex items-center gap-1.5 hover:bg-white/10 hover:border-[#1aa9da]/30 transition-colors cursor-default">
-                        <span className="w-1 h-1 rounded-full bg-[#1aa9da]" />
-                        {tech}
-                      </div>
-                    ))}
+                {/* Info Section */}
+                <div className="p-5 sm:p-6 space-y-4">
+                  {/* Title & Description */}
+                  <div className="space-y-2">
+                    <motion.h3
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                      className="text-xl sm:text-2xl font-bold text-white leading-tight tracking-tight"
+                    >
+                      {hoveredProject.name}
+                    </motion.h3>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.15 }}
+                      className="text-sm sm:text-[15px] text-gray-400 leading-relaxed line-clamp-2"
+                    >
+                      {hoveredProject.description}
+                    </motion.p>
                   </div>
-                </div>
 
-                <div className="grid grid-cols-2 gap-4 mt-2">
-                  <a href={hoveredProject.viewLink} target="_blank" rel="noopener noreferrer" className="relative group/btn flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#1aa9da] text-black font-bold text-sm overflow-hidden shadow-[0_0_20px_rgba(26,169,218,0.3)] transition-transform active:scale-95">
-                    <span className="relative z-10 flex items-center gap-2"><FaPlay size={10} /> Launch App</span>
-                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
-                  </a>
-                  <a href={hoveredProject.codeLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3.5 rounded-xl bg-black border border-white/20 text-white font-mono text-xs hover:bg-white/5 hover:border-white/50 transition-all active:scale-95 group/code">
-                    <FaCodeBranch className="text-gray-500 group-hover/code:text-[#1aa9da] transition-colors" />
-                    <span>source_code</span>
-                  </a>
+                  {/* Tech Stack */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="space-y-2.5"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="h-px w-8 bg-linear-to-r from-[#1aa9da] to-transparent" />
+                      <span className="text-[10px] uppercase tracking-[0.15em] text-gray-500 font-semibold">Stack</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {hoveredProject.techStack.map((tech, idx) => (
+                        <motion.span
+                          key={idx}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.25 + idx * 0.03 }}
+                          className="px-2.5 py-1 bg-white/3 hover:bg-white/8 border border-white/8 hover:border-[#1aa9da]/30 rounded-lg text-[11px] sm:text-xs text-gray-300 font-medium transition-all duration-200 cursor-default"
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  {/* Action Buttons */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex gap-3 pt-2"
+                  >
+                    {/* Launch Button */}
+                    <a
+                      href={hoveredProject.viewLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 group/launch relative overflow-hidden flex items-center justify-center gap-2 px-4 py-3 sm:py-3.5 bg-linear-to-r from-[#1aa9da] to-[#1aa9da]/90 hover:from-[#1aa9da]/90 hover:to-[#1aa9da] rounded-xl font-semibold text-sm text-black transition-all duration-300 active:scale-[0.98] shadow-lg shadow-[#1aa9da]/25"
+                    >
+                      <FaExternalLinkAlt className="text-[11px]" />
+                      <span>View Project</span>
+                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/launch:translate-y-0 transition-transform duration-300" />
+                    </a>
+
+                    {/* Code Button */}
+                    <a
+                      href={hoveredProject.codeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/code flex items-center justify-center gap-2 px-4 py-3 sm:py-3.5 bg-white/3 hover:bg-white/8 border border-white/10 hover:border-white/20 rounded-xl font-medium text-sm text-gray-300 hover:text-white transition-all duration-200 active:scale-[0.98]"
+                    >
+                      <FaGithub className="text-base group-hover/code:text-[#1aa9da] transition-colors" />
+                      <span className="hidden sm:inline">Code</span>
+                    </a>
+                  </motion.div>
                 </div>
               </div>
+
+              {/* Bottom accent line */}
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#1aa9da]/30 to-transparent" />
             </motion.div>
           </motion.div>
         )}
