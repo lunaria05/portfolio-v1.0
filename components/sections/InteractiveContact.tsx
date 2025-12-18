@@ -284,7 +284,7 @@ export default function ContactSection() {
                   disabled={!inputValue.trim()}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-4 py-3 bg-linear-to-r from-[#1aa9da] to-[#60d4f7] rounded-xl text-black font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-[0_0_20px_rgba(26,169,218,0.5)]"
+                  className="px-4 py-3 cursor-pointer bg-linear-to-r from-[#1aa9da] to-[#60d4f7] rounded-xl text-black font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-[0_0_20px_rgba(26,169,218,0.5)]"
                 >
                   <FaPaperPlane size={14} />
                 </motion.button>
