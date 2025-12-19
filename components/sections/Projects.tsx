@@ -81,22 +81,22 @@ const Projects = () => {
                         className={`
                             group relative cursor-pointer overflow-hidden rounded-md border transition-all duration-300
                             h-10 md:h-12 flex items-center px-4 gap-3
-                            ${isHovered 
+                            ${!isHovered 
                                 ? 'bg-[#1aa9da] border-[#1aa9da] shadow-[0_0_25px_rgba(26,169,218,0.4)]' 
                                 : 'bg-[#1aa9da]/20 border-white/10 hover:border-[#1aa9da]/50 hover:bg-white/10'
                             }
                         `}
                     >
                         {/* Number */}
-                        <span className={`text-[10px] font-mono font-bold transition-colors ${isHovered ? 'text-black' : 'text-[#1aa9da]'}`}>
+                        <span className={`text-[10px] font-mono font-bold transition-colors ${!isHovered ? 'text-black' : 'text-[#1aa9da]'}`}>
                             {index < 9 ? `0${index + 1}` : index + 1}
                         </span>
 
                         {/* Divider */}
-                        <div className={`h-3 w-px transition-colors ${isHovered ? 'bg-black/20' : 'bg-white/20'}`} />
+                        <div className={`h-3 w-px transition-colors ${!isHovered ? 'bg-black/20' : 'bg-white/20'}`} />
 
                         {/* Name */}
-                        <span className={`text-[10px] md:text-xs font-bold uppercase tracking-wide truncate transition-colors ${isHovered ? 'text-black' : 'text-gray-300 group-hover:text-white'}`}>
+                        <span className={`text-[10px] md:text-xs font-bold uppercase tracking-wide truncate transition-colors ${!isHovered ? 'text-black' : 'text-gray-300 group-hover:text-white'}`}>
                             {project.name}
                         </span>
                         

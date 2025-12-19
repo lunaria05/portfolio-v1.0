@@ -7,6 +7,14 @@ import {
 } from 'react-icons/si';
 import { FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
 import { BsTelegram, BsTwitter } from 'react-icons/bs';
+import { FaDownload } from 'react-icons/fa6';
+
+// Extend Window interface for GTM dataLayer
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
 
 type Message = {
   id: string;
@@ -15,6 +23,13 @@ type Message = {
 };
 
 type FormStep = 'name' | 'email' | 'message' | 'sending' | 'completed';
+
+type SocialLink = {
+  name: string;
+  icon: React.ComponentType<{ size?: number }>;
+  url: string;
+  download?: boolean;
+};
 
 export default function ContactSection() {
   const [messages, setMessages] = useState<Message[]>([
@@ -32,6 +47,18 @@ export default function ContactSection() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isBotTyping]);
+
+  const handleResumeClick = () => {
+    // Push event to GTM dataLayer
+    if (typeof window !== 'undefined' && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'resume_download',
+        event_category: 'engagement',
+        event_label: 'Resume Download',
+        value: 1
+      });
+    }
+  };
 
   const handleSendMessage = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -111,7 +138,8 @@ export default function ContactSection() {
     }, 1000);
   };
 
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
+    { name: 'Resume', icon: FaDownload, url: '/hiralvala_resume.pdf', download: true },
     { name: 'GitHub', icon: SiGithub, url: 'https://github.com/Hiralvala563' },
     { name: 'LinkedIn', icon: SiLinkedin, url: 'https://www.linkedin.com/in/hiral-vala-3309b0212/' },
     { name: 'Twitter', icon: BsTwitter, url: 'https://x.com/0xhiral' },
@@ -134,8 +162,8 @@ export default function ContactSection() {
           <motion.a
             key={idx}
             href={social.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(social.download ? { download: 'hiralvala_resume.pdf' } : { target: '_blank', rel: 'noopener noreferrer' })}
+            onClick={social.download ? handleResumeClick : undefined}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 + idx * 0.1 }}
@@ -328,14 +356,14 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="lg:hidden flex justify-center gap-3 mt-6"
+          className="lg:hidden flex justify-center gap-2 sm:gap-3 mt-6"
         >
           {socialLinks.map((social, idx) => (
             <motion.a
               key={idx}
               href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(social.download ? { download: 'hiralvala_resume.pdf' } : { target: '_blank', rel: 'noopener noreferrer' })}
+              onClick={social.download ? handleResumeClick : undefined}
               whileHover={{ scale: 1.1, y: -3 }}
               className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-[#1aa9da] hover:border-[#1aa9da] transition-all"
             >
